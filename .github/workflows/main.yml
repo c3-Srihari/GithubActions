@@ -20,7 +20,8 @@ jobs:
       - run: |
           git config --global user.email "buildUI.bot@c3.ai"
           git config --global user.name "Build UI Bot"
+          git checkout -b buildUI/${{ github.run_id }}
           npm install
           npm run build
           git commit -a -m "Update UI Build"
-          git push
+          gh pr create -B buildUI/${{ github.run_id }} -H main --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
