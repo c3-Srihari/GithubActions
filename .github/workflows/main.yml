@@ -17,11 +17,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           token: ${{ secrets.DEPLOY_UI_BUILD_BOT }}
-      - run: |
-          git config --global user.email "buildUI.bot@c3.ai"
-          git config --global user.name "Build UI Bot"
-          git checkout -b buildUI/${{ github.run_id }}
-          npm install
-          npm run build
-          git commit -a -m "Update UI Build"
-          gh pr create -B buildUI/${{ github.run_id }} -H main --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+      - run: git config --global user.email "buildUI.bot@c3.ai"
+      - run: git config --global user.name "Build UI Bot"
+      - run: git checkout -b buildUi/${{ github.run_id }}
+      - run: npm install
+      - run: npm run build
+      - run: git commit -a -m "Update UI Build"
+      - run: git push
+      - run: gh pr create -B main -H buildUi/${{ github.run_id }} --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+        env: 
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_UI_BUILD_BOT }}
