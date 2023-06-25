@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - run: git config --global user.email "srihari.parthasarathy@c3.ai"
+      - run: git config --global user.name "Srihari"
       - run: npm install
       - run: npm run build
       - run: git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
