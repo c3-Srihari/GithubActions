@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: git config --global user.email "srihari.parthasarathy@c3.ai"
-      - run: git config --global user.name "Srihari"
+      - run: git config --global user.name "Srihari Parthasarathy"
       - run: npm install
       - run: npm run build
       - run: git commit -a -m "Update UI Build"
