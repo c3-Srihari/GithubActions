@@ -20,5 +20,5 @@ jobs:
       - run: git config --global user.name "Srihari"
       - run: npm install
       - run: npm run build
-      - run: git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+      - run: git commit -a -m "Update UI Build"
       - run: git push
