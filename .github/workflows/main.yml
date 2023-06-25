@@ -16,8 +16,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          token: ${{ secrets.DEPLOYUIBUILDBOT }}
-      - run: npm install
-      - run: npm run build
-      - run: git commit -a -m "Update UI Build"
-      - run: git push
+          token: ${{ secrets.DEPLOY_UI_BUILD_BOT }}
+      - run: |
+          git config --global user.email "buildUI.bot@c3.ai"
+          git config --global user.name "Build UI Bot"
+          npm install
+          npm run build
+          git commit -a -m "Update UI Build"
+          git push
